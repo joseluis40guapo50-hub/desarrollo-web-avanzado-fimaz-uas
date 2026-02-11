@@ -28,3 +28,14 @@ parcial-2-pdo/
  ├ practica-2/ → CRUD
  ├ practica-3/ → consultas
  └ examen-practico/
+parcial-2-poo/
+  practica-2/
+    Persona.php
+    Alumno.php
+    main.php
+    README.md
+Agrega practica 1 POO
+Agrega practica 2 POO
+Agrega examen POO
+
+
