@@ -23,3 +23,8 @@ try{
 }catch(Exception $e){
     echo $e->getMessage();
 }
+parcial-2-pdo/
+ ├ practica-1/ → conexión
+ ├ practica-2/ → CRUD
+ ├ practica-3/ → consultas
+ └ examen-practico/
