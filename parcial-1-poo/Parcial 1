@@ -19,3 +19,45 @@ class Persona {
     }
 
 }
+<?php
+
+require_once "Persona.php";
+
+class Alumno extends Persona {
+
+    private $matricula;
+
+    public function __construct($nombre, $edad, $matricula){
+        parent::__construct($nombre, $edad);
+        $this->matricula = $matricula;
+    }
+
+    public function getMatricula(){
+        return $this->matricula;
+    }
+
+}
+<?php
+
+require_once "Alumno.php";
+
+$alumno = new Alumno("Luis", 19, "A2026");
+
+echo "Nombre: ".$alumno->getNombre()."<br>";
+echo "Edad: ".$alumno->getEdad()."<br>";
+echo "Matrícula: ".$alumno->getMatricula();
+# Práctica 1 – Parcial 1
+
+## Objetivo
+Aplicar clases, objetos y herencia en PHP.
+
+## Tecnologías
+- PHP 8
+
+## Instrucciones
+1. Copiar carpeta en htdocs
+2. Abrir XAMPP
+3. Entrar a main.php
+
+## Evidencia
+Muestra datos del alumno.
