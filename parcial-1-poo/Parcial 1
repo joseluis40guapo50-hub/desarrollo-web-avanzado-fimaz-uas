@@ -61,3 +61,8 @@ Aplicar clases, objetos y herencia en PHP.
 
 ## Evidencia
 Muestra datos del alumno.
+parcial-1-poo/
+ ├ practica-1/  → clases, herencia
+ ├ practica-2/  → excepciones
+ ├ practica-3/  → interfaces
+ └ examen-practico/
