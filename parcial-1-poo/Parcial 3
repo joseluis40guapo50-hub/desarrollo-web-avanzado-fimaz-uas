@@ -46,3 +46,94 @@ parcial-3-mvc/
      ├ views/
      └ controllers/
 
+parcial-3-mvc/practica-1/
+ ├ controllers
+ ├ models
+ ├ views
+ └ index.php
+<?php
+
+class Alumno {
+
+    private $pdo;
+
+    public function __construct($pdo){
+        $this->pdo = $pdo;
+    }
+
+    public function listar(){
+        return $this->pdo->query("SELECT * FROM alumnos");
+    }
+
+    public function insertar($nombre,$edad){
+        $stmt=$this->pdo->prepare(
+            "INSERT INTO alumnos(nombre,edad) VALUES(?,?)"
+        );
+        $stmt->execute([$nombre,$edad]);
+    }
+
+}
+<?php
+require_once "models/Alumno.php";
+
+class AlumnoController{
+
+    private $modelo;
+
+    public function __construct($pdo){
+        $this->modelo=new Alumno($pdo);
+    }
+
+    public function index(){
+        return $this->modelo->listar();
+    }
+
+    public function guardar(){
+        if($_POST){
+            $this->modelo->insertar(
+                $_POST["nombre"],
+                $_POST["edad"]
+            );
+        }
+    }
+
+}
+<h2>Alumnos</h2>
+
+<form method="POST">
+    <input name="nombre" placeholder="Nombre" required>
+    <input name="edad" placeholder="Edad" required>
+    <button>Guardar</button>
+</form>
+
+<hr>
+
+<?php foreach($alumnos as $a): ?>
+    <?= $a["nombre"] ?> - <?= $a["edad"] ?><br>
+<?php endforeach; ?>
+<?php
+
+$pdo=new PDO("mysql:host=localhost;dbname=escuela","root","");
+
+require_once "controllers/AlumnoController.php";
+
+$controller=new AlumnoController($pdo);
+
+$controller->guardar();
+
+$alumnos=$controller->index();
+
+include "views/alumnos.php";
+# Práctica 1 – Parcial 3 (MVC)
+
+## Objetivo
+Implementar arquitectura MVC en PHP.
+
+## Tecnologías
+PHP 8, MySQL
+
+## Ejecución
+Abrir index.php en navegador.
+
+## Evidencia
+Formulario CRUD.
