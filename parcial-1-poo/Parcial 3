@@ -1,14 +1,43 @@
-parcial-3-mvc/practica-1/README.md
-parcial-3-mvc/practica-2/README.md
-parcial-3-mvc/practica-3/README.md
-parcial-3-mvc/examen-practico/README.md
-practica-1/
-practica-2/
-practica-3/
-examen-practico/
-parcial-2-pdo/
-parcial-3-mvc/
-parcial-4-rest/
-proyecto-final/
-README.md
+<?php
+
+interface Figura {
+    public function area();
+}
+<?php
+
+require_once "Figura.php";
+
+class Cuadrado implements Figura {
+
+    private $lado;
+
+    public function __construct($lado){
+        $this->lado = $lado;
+    }
+
+    public function area(){
+        return $this->lado * $this->lado;
+    }
+
+}
+<?php
+
+require_once "Cuadrado.php";
+
+$c = new Cuadrado(5);
+
+echo "Área: ".$c->area();
+# Práctica 3 – Parcial 1
+
+## Objetivo
+Uso de interfaces en PHP.
+
+## Tecnologías
+- PHP 8
+
+## Instrucciones
+Ejecutar main.php
+
+## Evidencia
+Muestra el área.
 
