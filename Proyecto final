@@ -1,0 +1,120 @@
+proyecto-final/
+ ├ api
+ ├ controllers
+ ├ models
+ ├ views
+ ├ config
+ └ index.php
+<?php
+$pdo=new PDO("mysql:host=localhost;dbname=sistema","root","");
+<?php
+class Producto{
+
+    private $pdo;
+
+    public function __construct($pdo){
+        $this->pdo=$pdo;
+    }
+
+    public function listar(){
+        return $this->pdo->query("SELECT * FROM productos");
+    }
+
+    public function insertar($n,$p){
+        $stmt=$this->pdo->prepare(
+            "INSERT INTO productos(nombre,precio) VALUES(?,?)"
+        );
+        $stmt->execute([$n,$p]);
+    }
+
+}
+<?php
+require_once "models/Producto.php";
+
+class ProductoController{
+
+    private $modelo;
+
+    public function __construct($pdo){
+        $this->modelo=new Producto($pdo);
+    }
+
+    public function guardar(){
+        if($_POST){
+            $this->modelo->insertar(
+                $_POST["nombre"],
+                $_POST["precio"]
+            );
+        }
+    }
+
+    public function listar(){
+        return $this->modelo->listar();
+    }
+
+}
+<h2>Productos</h2>
+
+<form method="POST">
+    <input name="nombre" placeholder="Nombre" required>
+    <input name="precio" placeholder="Precio" required>
+    <button>Guardar</button>
+</form>
+
+<hr>
+
+<?php foreach($productos as $p): ?>
+    <?= $p["nombre"] ?> - $<?= $p["precio"] ?><br>
+<?php endforeach; ?>
+<?php
+
+require_once "config/db.php";
+require_once "controllers/ProductoController.php";
+
+$c=new ProductoController($pdo);
+
+$c->guardar();
+
+$productos=$c->listar();
+
+include "views/productos.php";
+<?php
+
+header("Content-Type: application/json");
+
+require_once "../config/db.php";
+
+$met=$_SERVER["REQUEST_METHOD"];
+
+if($met=="GET"){
+
+    $data=$pdo->query("SELECT * FROM productos")->fetchAll();
+    echo json_encode($data);
+
+}
+CREATE DATABASE sistema;
+
+USE sistema;
+
+CREATE TABLE productos(
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ nombre VARCHAR(100),
+ precio DECIMAL(10,2)
+);
+# Proyecto Final
+
+Sistema CRUD MVC + REST
+
+## Tecnologías
+PHP, MySQL
+
+## Ejecución
+Importar BD, abrir index.php
+
+## Evidencia
+Sistema funcional.
+Agrega proyecto MVC
+Agrega vistas y controladores
+Agrega proyecto final
+Agrega API del proyecto
+Agrega documentación final
