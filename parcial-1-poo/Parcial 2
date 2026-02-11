@@ -1,13 +1,25 @@
-parcial-2-pdo/practica-1/README.md
-parcial-2-pdo/practica-2/README.md
-parcial-2-pdo/practica-3/README.md
-parcial-2-pdo/examen-practico/README.md
-practica-1/
-practica-2/
-practica-3/
-examen-practico/
-parcial-2-pdo/
-parcial-3-mvc/
-parcial-4-rest/
-proyecto-final/
-README.md
+<?php
+
+class Calculadora {
+
+    public function dividir($a, $b){
+
+        if($b == 0){
+            throw new Exception("No se puede dividir entre cero");
+        }
+
+        return $a / $b;
+    }
+
+}
+<?php
+
+require_once "Calculadora.php";
+
+$calc = new Calculadora();
+
+try{
+    echo $calc->dividir(10,2);
+}catch(Exception $e){
+    echo $e->getMessage();
+}
