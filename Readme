@@ -1,29 +1,17 @@
-desarrollo-web-avanzado-fimaz-uas/
-│
-├── parcial-1-poo/
-│   ├── practica-1/
-│   ├── practica-2/
-│   ├── practica-3/
-│   └── examen-practico/
-│
-├── parcial-2-pdo/
-│   ├── practica-1/
-│   ├── practica-2/
-│   ├── practica-3/
-│   └── examen-practico/
-│
-├── parcial-3-mvc/
-│   ├── practica-1/
-│   ├── practica-2/
-│   ├── practica-3/
-│   └── examen-practico/
-│
-├── parcial-4-rest/
-│   ├── practica-1/
-│   ├── practica-2/
-│   ├── practica-3/
-│   └── examen-practico/
-│
-├── proyecto-final/
-│
-└── README.md
+# Desarrollo Web Avanzado - FIMAZ UAS
+
+Repositorio de evidencias de la asignatura Desarrollo Web Avanzado.
+
+Alumno: Luis Lizarraga  
+Carrera: Ingeniería en Sistemas de Información  
+Semestre: 6°  
+
+## Contenido
+
+- Parcial 1: Programación Orientada a Objetos en PHP
+- Parcial 2: PDO y MySQL
+- Parcial 3: Arquitectura MVC
+- Parcial 4: API REST
+- Proyecto Final
+
+Cada parcial contiene prácticas, exámenes y documentación.
