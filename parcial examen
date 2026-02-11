@@ -1,0 +1,29 @@
+<?php
+
+class Usuario {
+
+    private $nombre;
+
+    public function __construct($nombre){
+        $this->nombre = $nombre;
+    }
+
+    public function getNombre(){
+        return $this->nombre;
+    }
+
+}
+<?php
+
+require_once "Sistema.php";
+
+$u = new Usuario("Luis");
+
+echo "Usuario: ".$u->getNombre();
+# Examen Práctico – Parcial 1
+
+## Objetivo
+Aplicar POO completa en PHP.
+
+## Evidencia
+Muestra datos del usuario.
