@@ -1,13 +1,177 @@
-parcial-4-rest/practica-1/README.md
-parcial-4-rest/practica-2/README.md
-parcial-4-rest/practica-3/README.md
-parcial-4-rest/examen-practico/README.md
-practica-1/
-practica-2/
-practica-3/
-examen-practico/
-parcial-2-pdo/
-parcial-3-mvc/
-parcial-4-rest/
-proyecto-final/
-README.md
+<?php
+
+$host = "localhost";
+$db = "api_rest";
+$user = "root";
+$pass = "";
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e){
+    echo json_encode([
+        "error" => $e->getMessage()
+    ]);
+    exit;
+}
+CREATE DATABASE api_rest;
+
+USE api_rest;
+
+CREATE TABLE productos(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
+    precio DECIMAL(10,2)
+);
+<?php
+
+header("Content-Type: application/json");
+
+require_once "conexion.php";
+
+$metodo = $_SERVER["REQUEST_METHOD"];
+
+switch($metodo){
+
+    // ================= GET =================
+    case "GET":
+
+        $stmt = $pdo->prepare("SELECT * FROM productos");
+        $stmt->execute();
+
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        echo json_encode($data);
+
+    break;
+
+
+    // ================= POST =================
+    case "POST":
+
+        $datos = json_decode(file_get_contents("php://input"), true);
+
+        $nombre = $datos["nombre"];
+        $precio = $datos["precio"];
+
+        $stmt = $pdo->prepare(
+            "INSERT INTO productos(nombre, precio) VALUES(?,?)"
+        );
+
+        $stmt->execute([$nombre, $precio]);
+
+        echo json_encode([
+            "mensaje" => "Producto agregado"
+        ]);
+
+    break;
+
+
+    // ================= PUT =================
+    case "PUT":
+
+        $datos = json_decode(file_get_contents("php://input"), true);
+
+        $id = $datos["id"];
+        $nombre = $datos["nombre"];
+        $precio = $datos["precio"];
+
+        $stmt = $pdo->prepare(
+            "UPDATE productos 
+             SET nombre=?, precio=? 
+             WHERE id=?"
+        );
+
+        $stmt->execute([$nombre, $precio, $id]);
+
+        echo json_encode([
+            "mensaje" => "Producto actualizado"
+        ]);
+
+    break;
+
+
+    // ================= DELETE =================
+    case "DELETE":
+
+        $datos = json_decode(file_get_contents("php://input"), true);
+
+        $id = $datos["id"];
+
+        $stmt = $pdo->prepare(
+            "DELETE FROM productos WHERE id=?"
+        );
+
+        $stmt->execute([$id]);
+
+        echo json_encode([
+            "mensaje" => "Producto eliminado"
+        ]);
+
+    break;
+
+
+    default:
+
+        echo json_encode([
+            "mensaje" => "Método no permitido"
+        ]);
+
+    break;
+}
+# Práctica 1 – Parcial 4 (REST)
+
+## Objetivo
+Desarrollar una API REST en PHP con métodos CRUD.
+
+## Tecnologías
+- PHP 8
+- MySQL
+- PDO
+- JSON
+
+## Instrucciones
+
+1. Importar script.sql en phpMyAdmin
+2. Copiar carpeta en htdocs
+3. Iniciar XAMPP
+4. Abrir Postman
+5. Probar la API con:
+
+URL:
+http://localhost/parcial-4-rest/practica-1/api.php
+
+## Endpoints
+
+### GET
+Obtiene todos los productos
+
+### POST
+Agrega producto
+
+JSON:
+{
+ "nombre":"Mouse",
+ "precio":150
+}
+
+### PUT
+Actualiza producto
+
+JSON:
+{
+ "id":1,
+ "nombre":"Teclado",
+ "precio":300
+}
+
+### DELETE
+Elimina producto
+
+JSON:
+{
+ "id":1
+}
+
+## Evidencia
+Pruebas realizadas con Postman.
