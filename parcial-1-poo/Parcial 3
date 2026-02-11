@@ -40,4 +40,9 @@ Ejecutar main.php
 
 ## Evidencia
 Muestra el área.
+parcial-3-mvc/
+ └ practica-1/
+     ├ models/
+     ├ views/
+     └ controllers/
 
