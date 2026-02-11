@@ -1,0 +1,16 @@
+parcial-1-poo/
+ ├── practica-1/
+ │    ├── Persona.php
+ │    ├── Alumno.php
+ │    ├── main.php
+ │    └── README.md
+ │
+ ├── practica-2/
+ │    ├── ...
+ │    └── README.md
+ │
+ ├── practica-3/
+ │    └── ...
+ │
+ └── examen-practico/
+      └── ...
