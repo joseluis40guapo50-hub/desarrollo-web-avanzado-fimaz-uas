@@ -1,0 +1,67 @@
+<?php
+$host = "localhost";
+$db = "escuela";
+$user = "root";
+$pass = "";
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    if ($_POST) {
+
+        $nombre = $_POST['nombre'];
+        $correo = $_POST['correo'];
+        $error = isset($_POST['error']);
+
+        $pdo->beginTransaction();
+
+        $stmt = $pdo->prepare("INSERT INTO alumnos(nombre, correo) VALUES (?, ?)");
+        $stmt->execute([$nombre, $correo]);
+
+        if ($error) {
+            throw new Exception("Error simulado");
+        }
+
+        $stmt2 = $pdo->prepare("INSERT INTO logs(mensaje) VALUES (?)");
+        $stmt2->execute(["Alumno registrado: $nombre"]);
+
+        $pdo->commit();
+
+        echo "<h3 style='color:green;'>COMMIT: Alumno registrado</h3>";
+    }
+
+} catch (Exception $e) {
+
+    if ($pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
+
+    echo "<h3 style='color:red;'>ROLLBACK: " . $e->getMessage() . "</h3>";
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transacciones PDO</title>
+</head>
+<body>
+
+<h2>Registro de Alumno</h2>
+
+<form method="POST">
+    Nombre: <input type="text" name="nombre" required><br><br>
+    Correo: <input type="email" name="correo" required><br><br>
+
+    <label>
+        <input type="checkbox" name="error"> Simular error
+    </label><br><br>
+
+    <button type="submit">Registrar alumno</button>
+</form>
+
+</body>
+</html>
+
+Actividad 3.- Transacciones en PHP-PD
