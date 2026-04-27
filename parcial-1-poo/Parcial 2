@@ -1,0 +1,41 @@
+<?php
+
+class Calculadora {
+
+    public function dividir($a, $b){
+
+        if($b == 0){
+            throw new Exception("No se puede dividir entre cero");
+        }
+
+        return $a / $b;
+    }
+
+}
+<?php
+
+require_once "Calculadora.php";
+
+$calc = new Calculadora();
+
+try{
+    echo $calc->dividir(10,2);
+}catch(Exception $e){
+    echo $e->getMessage();
+}
+parcial-2-pdo/
+ ├ practica-1/ → conexión
+ ├ practica-2/ → CRUD
+ ├ practica-3/ → consultas
+ └ examen-practico/
+parcial-2-poo/
+  practica-2/
+    Persona.php
+    Alumno.php
+    main.php
+    README.md
+Agrega practica 1 POO
+Agrega practica 2 POO
+Agrega examen POO
+
+

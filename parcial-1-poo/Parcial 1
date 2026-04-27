@@ -1,0 +1,77 @@
+<?php
+
+class Persona {
+
+    protected $nombre;
+    protected $edad;
+
+    public function __construct($nombre, $edad){
+        $this->nombre = $nombre;
+        $this->edad = $edad;
+    }
+
+    public function getNombre(){
+        return $this->nombre;
+    }
+
+    public function getEdad(){
+        return $this->edad;
+    }
+
+}
+<?php
+
+require_once "Persona.php";
+
+class Alumno extends Persona {
+
+    private $matricula;
+
+    public function __construct($nombre, $edad, $matricula){
+        parent::__construct($nombre, $edad);
+        $this->matricula = $matricula;
+    }
+
+    public function getMatricula(){
+        return $this->matricula;
+    }
+
+}
+<?php
+
+require_once "Alumno.php";
+
+$alumno = new Alumno("Luis", 19, "A2026");
+
+echo "Nombre: ".$alumno->getNombre()."<br>";
+echo "Edad: ".$alumno->getEdad()."<br>";
+echo "Matrícula: ".$alumno->getMatricula();
+# Práctica 1 – Parcial 1
+
+## Objetivo
+Aplicar clases, objetos y herencia en PHP.
+
+## Tecnologías
+- PHP 8
+
+## Instrucciones
+1. Copiar carpeta en htdocs
+2. Abrir XAMPP
+3. Entrar a main.php
+
+## Evidencia
+Muestra datos del alumno.
+parcial-1-poo/
+ ├ practica-1/  → clases, herencia
+ ├ practica-2/  → excepciones
+ ├ practica-3/  → interfaces
+ └ examen-practico/
+parcial-1-poo/
+  practica-1/
+    Persona.php
+    Alumno.php
+    main.php
+    README.md
+Agrega practica 1 POO
+Agrega practica 2 POO
+Agrega examen POO
